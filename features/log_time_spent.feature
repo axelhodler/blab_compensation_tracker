@@ -6,4 +6,4 @@ Feature: Log time spent
   Scenario:
     Given a member 1
     When member 1 submits his timespent
-    Then timespent is not yet verified
+    Then timespent is not verified

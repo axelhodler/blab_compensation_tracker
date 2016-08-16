@@ -8,3 +8,8 @@ Feature: Verify Compensation
     Given member 2 has verified timespent
     When member 3 verifies timespent
     Then timespent is verified
+
+  Scenario:
+    Given timespent of member 1
+    When member 1 verifies timespent
+    Then timespent is not verified

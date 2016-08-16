@@ -1,8 +1,11 @@
 function TimeSpent(memberId) {
+  this._memberId = memberId;
   this._verified = false;
 
-  this.verify = function() {
-    this._verified = true;
+  this.verify = function(memberId) {
+    if (this._memberId !== memberId) {
+      this._verified = true;
+    }
   };
 
   this.isVerified = function() {

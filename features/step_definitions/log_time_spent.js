@@ -12,7 +12,7 @@ module.exports = function() {
     timeSpent = new TimeSpent(memberId);
   });
 
-  this.Then(/^timespent is not yet verified$/, function () {
+  this.Then(/^timespent is not verified$/, function () {
     expect(timeSpent.isVerified()).to.be.false;
   });
 };
