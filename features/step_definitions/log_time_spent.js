@@ -1,18 +1,18 @@
 var Member = require('../../src/model/member');
-var Submission = require('../../src/model/submission');
+var TimeSpent = require('../../src/model/time_spent');
 
 module.exports = function() {
-  var submission;
+  var timeSpent;
 
   this.Given(/^a member (\d+)$/, function (id) {
     new Member(id);
   });
 
-  this.When(/^member (\d+) submits his time spent$/, function (memberId) {
-    submission = new Submission(memberId);
+  this.When(/^member (\d+) submits his timespent$/, function (memberId) {
+    timeSpent = new TimeSpent(memberId);
   });
 
-  this.Then(/^his submission is not yet verified$/, function () {
-    expect(submission.isVerified()).to.be.false;
+  this.Then(/^timespent is not yet verified$/, function () {
+    expect(timeSpent.isVerified()).to.be.false;
   });
 };

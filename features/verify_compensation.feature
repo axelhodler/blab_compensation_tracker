@@ -4,7 +4,7 @@ Feature: Verify Compensation
   We want to keep track of our members contributions
 
   Scenario:
-    Given a time spent submission of member 1
-    Given member 2 has verified the submission
-    When member 3 verifies the submission
-    Then the submission is verified
+    Given timespent of member 1
+    Given member 2 has verified timespent
+    When member 3 verifies timespent
+    Then timespent is verified

@@ -1,21 +1,21 @@
-var Submission = require('../../src/model/submission');
+var TimeSpent = require('../../src/model/time_spent');
 
 module.exports = function() {
-  var submission;
+  var timeSpent;
 
-  this.Given(/^a time spent submission of member (\d+)$/, function(memberId) {
-    submission = new Submission(memberId);
+  this.Given(/^timespent of member (\d+)$/, function(memberId) {
+    timeSpent = new TimeSpent(memberId);
   });
 
-  this.Given(/^member (\d+) has verified the submission$/, function(memberId) {
-    submission.verify(memberId);
+  this.Given(/^member (\d+) has verified timespent$/, function(memberId) {
+    timeSpent.verify(memberId);
   });
 
-  this.When(/^member (\d+) verifies the submission$/, function(memberId) {
-    submission.verify(memberId);
+  this.When(/^member (\d+) verifies timespent$/, function(memberId) {
+    timeSpent.verify(memberId);
   });
 
-  this.Then(/^the submission is verified$/, function() {
-    expect(submission.isVerified()).to.be.true;
+  this.Then(/^timespent is verified$/, function() {
+    expect(timeSpent.isVerified()).to.be.true;
   });
 };

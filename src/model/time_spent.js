@@ -1,4 +1,4 @@
-function Submission(memberId) {
+function TimeSpent(memberId) {
   this._verified = false;
 
   this.verify = function() {
@@ -10,4 +10,4 @@ function Submission(memberId) {
   };
 }
 
-module.exports = Submission;
+module.exports = TimeSpent;
