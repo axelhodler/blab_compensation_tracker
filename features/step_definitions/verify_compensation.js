@@ -18,10 +18,6 @@ module.exports = function() {
     timeSpent = new TimeSpent(memberId);
   });
 
-  this.When(/^member (\d+) submits his timespent$/, function (memberId) {
-    timeSpent = new TimeSpent(memberId);
-  });
-
   this.Given(/^member (\d+) has verified timespent$/, function(memberId) {
     timeSpent.verify(memberId);
   });
