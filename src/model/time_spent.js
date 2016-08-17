@@ -9,7 +9,8 @@ function TimeSpent(memberId) {
   };
 
   this.isVerified = function() {
-    return this._verificationCount === 2 ? true : false;
+    var majority = 2;
+    return this._verificationCount === majority ? true : false;
   };
 }
 
