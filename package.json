@@ -7,6 +7,6 @@
     "cucumber": "^1.2.2"
   },
   "scripts": {
-    "cuke": "./node_modules/.bin/cucumber.js features"
+    "cuke": "./node_modules/.bin/cucumber.js --tags ~@ignore features"
   }
 }
