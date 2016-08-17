@@ -1,15 +1,15 @@
 function TimeSpent(memberId) {
+  this._verificationCount = 0;
   this._memberId = memberId;
-  this._verified = false;
 
   this.verify = function(memberId) {
     if (this._memberId !== memberId) {
-      this._verified = true;
+      this._verificationCount++;
     }
   };
 
   this.isVerified = function() {
-    return this._verified;
+    return this._verificationCount === 2 ? true : false;
   };
 }
 

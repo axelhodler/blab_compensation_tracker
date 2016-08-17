@@ -7,12 +7,4 @@ module.exports = function() {
   this.Given(/^a member (\d+)$/, function (id) {
     new Member(id);
   });
-
-  this.When(/^member (\d+) submits his timespent$/, function (memberId) {
-    timeSpent = new TimeSpent(memberId);
-  });
-
-  this.Then(/^timespent is not verified$/, function () {
-    expect(timeSpent.isVerified()).to.be.false;
-  });
 };

@@ -9,6 +9,12 @@ Feature: Verify Compensation
     When member 3 verifies timespent
     Then timespent is verified
 
+  Scenario: It takes a majority of members for a timespent to be verified
+    Given three members 1 2 3
+    Given timespent of member 2
+    When member 3 verifies timespent
+    Then timespent is not verified
+
   Scenario: Members cant verify their own timespent
     Given timespent of member 1
     When member 1 verifies timespent
