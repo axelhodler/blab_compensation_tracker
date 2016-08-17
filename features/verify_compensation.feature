@@ -10,7 +10,11 @@ Feature: Verify Compensation
     Then timespent is verified
 
   Scenario: It takes a majority of members for a timespent to be verified
-    Given three members 1 2 3
+    Given following members exist:
+      | memberId |
+      | 1 |
+      | 2 |
+      | 3 |
     Given timespent of member 2
     When member 3 verifies timespent
     Then timespent is not verified
