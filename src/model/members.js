@@ -4,6 +4,6 @@ module.exports = {
     this.members.push(memberId);
   },
   requiredMajority: function() {
-    return 2;
+    return Math.ceil(this.members.length * 0.51);
   }
 };

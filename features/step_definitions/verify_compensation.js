@@ -1,6 +1,4 @@
 var TimeSpent = require('../../src/model/time_spent');
-var members = require('../../src/model/members');
-
 module.exports = function() {
   var timeSpent;
 
