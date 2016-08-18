@@ -1,9 +1,8 @@
 var TimeSpent = require('../../src/model/time_spent');
-var Members = require('../../src/model/members');
+var members = require('../../src/model/members');
 
 module.exports = function() {
   var timeSpent;
-  var members;
 
   this.Given(/^timespent of member (\d+)$/, function(memberId) {
     timeSpent = new TimeSpent(memberId);
@@ -14,7 +13,6 @@ module.exports = function() {
   });
 
   this.Given(/^following members exist:$/, function (table) {
-    members = new Members();
     table.rows().forEach(function(memberId) {
       members.add(memberId);
     });

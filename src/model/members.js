@@ -1,9 +1,6 @@
-function Members() {
-  this._members = [];
-
-  this.add = function(memberId) {
-    this._members.push(memberId)
+module.exports = {
+  members: [],
+  add : function(memberId) {
+    this.members.push(memberId);
   }
-}
-
-module.exports = Members;
+};
