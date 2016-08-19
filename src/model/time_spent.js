@@ -1,15 +1,15 @@
-function TimeSpent(members, memberId) {
+function TimeSpent(members, timespentSubmitterId) {
   this._verificationCount = 0;
-  this._memberId = memberId;
+  this._timespentSubmitterId = timespentSubmitterId;
   this._isValid = false;
   this._verfiers = [];
 
-  this.verify = function(memberId) {
-    if (not_trying_to_self_validate.call(this, memberId)) {
-      if (this._verfiers.indexOf(memberId) === -1) {
-        this._verfiers.push(memberId);
+  this.verify = function(verifierId) {
+    if (notTryingToSelfValidate.call(this, verifierId)) {
+      if (this._verfiers.indexOf(verifierId) === -1) {
+        this._verfiers.push(verifierId);
         this._verificationCount++;
-        if (enough_validations_reached.call(this)) {
+        if (enoughValidationsReached.call(this)) {
           this._isValid = true;
         }
       }
@@ -20,11 +20,11 @@ function TimeSpent(members, memberId) {
     return this._isValid;
   };
 
-  function not_trying_to_self_validate(memberId) {
-    return this._memberId !== memberId;
+  function notTryingToSelfValidate(verifierId) {
+    return this._timespentSubmitterId !== verifierId;
   }
 
-  function enough_validations_reached() {
+  function enoughValidationsReached() {
     return this._verificationCount === members.requiredMajority();
   }
 
