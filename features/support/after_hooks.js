@@ -1,6 +1,10 @@
 var afterHooks = function () {
-  this.After(function (scenario) {
+  function resetMembersList() {
     members.members = [];
+  }
+
+  this.After(function (scenario) {
+    resetMembersList();
   });
 };
 
