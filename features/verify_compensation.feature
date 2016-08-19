@@ -13,7 +13,6 @@ Feature: Verify Compensation
     When member 3 verifies timespent
     Then timespent is not verified
 
-  @ignore
   Scenario: It takes a majority of members for a timespent to be verified
     Given following members exist:
       | memberId |
