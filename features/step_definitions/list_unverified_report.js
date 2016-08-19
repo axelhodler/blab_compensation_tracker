@@ -1,28 +1,7 @@
+var Report = require('../../src/model/report');
+var Reports = require('../../src/model/reports');
+
 module.exports = function() {
-  function Reports() {
-    this._reports = [];
-    this.add = function(report) {
-      this._reports.push(report)
-    };
-
-    this.list = function() {
-      return this._reports;
-    };
-  }
-
-  function Report(reportId, memberId) {
-    this._reportId = reportId;
-    this._memberId = memberId;
-
-    this.id = function() {
-      return this._reportId;
-    };
-
-    this.submitter = function() {
-      return this._memberId;
-    }
-  }
-
   var reports;
   var listOfReports;
 
