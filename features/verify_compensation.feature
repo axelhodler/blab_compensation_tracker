@@ -31,5 +31,6 @@ Feature: Verify Compensation
     Given following members exist:
       | memberId |
       | 1        |
+    Given timespent of member 1
     When member 1 verifies timespent
     Then timespent is not verified
