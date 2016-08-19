@@ -1,4 +1,4 @@
-function TimeSpent(memberId) {
+function TimeSpent(members, memberId) {
   this._verificationCount = 0;
   this._memberId = memberId;
 
@@ -9,8 +9,7 @@ function TimeSpent(memberId) {
   };
 
   this.isVerified = function() {
-    var majority = 2;
-    return this._verificationCount === majority ? true : false;
+    return this._verificationCount === members.requiredMajority() ? true : false;
   };
 }
 

@@ -1,9 +1,10 @@
 var TimeSpent = require('../../src/model/time_spent');
+
 module.exports = function() {
   var timeSpent;
 
   this.Given(/^timespent of member (\d+)$/, function(memberId) {
-    timeSpent = new TimeSpent(memberId);
+    timeSpent = new TimeSpent(members, memberId);
   });
 
   this.Given(/^member (\d+) has verified timespent$/, function(memberId) {

@@ -4,12 +4,6 @@ Feature: Verify Compensation
   We want to keep track of our members contributions
 
   Scenario: It takes a majority of members for a timespent to be verified
-    Given timespent of member 1
-    Given member 2 has verified timespent
-    When member 3 verifies timespent
-    Then timespent is verified
-
-  Scenario: It takes a majority of members for a timespent to be verified
     Given following members exist:
       | memberId |
       | 1 |
@@ -35,6 +29,8 @@ Feature: Verify Compensation
     Then timespent is verified
 
   Scenario: Members cant verify their own timespent
-    Given timespent of member 1
+    Given following members exist:
+      | memberId |
+      | 1        |
     When member 1 verifies timespent
     Then timespent is not verified
