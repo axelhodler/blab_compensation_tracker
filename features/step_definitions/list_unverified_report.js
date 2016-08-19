@@ -17,6 +17,10 @@ module.exports = function() {
     this.id = function() {
       return this._reportId;
     };
+
+    this.submitter = function() {
+      return this._memberId;
+    }
   }
 
   var reports;
@@ -31,8 +35,9 @@ module.exports = function() {
     listOfReports = reports.list();
   });
 
-  this.Then(/^the list consists of the report "([^"]*)"$/, function(reportId) {
+  this.Then(/^the list consists of the report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
     expect(listOfReports.length).to.equal(1);
     expect(listOfReports[0].id()).to.equal(reportId);
+    expect(listOfReports[0].submitter()).to.equal(memberId);
   });
 };
