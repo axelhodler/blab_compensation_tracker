@@ -6,7 +6,7 @@ function TimeSpent(members, timespentSubmitterId) {
 
   this.verify = function(verifierId) {
     if (notTryingToSelfValidate.call(this, verifierId)) {
-      if (this._verfiers.indexOf(verifierId) === -1) {
+      if (hasNotVerifiedYet.call(this, verifierId)) {
         this._verfiers.push(verifierId);
         this._verificationCount++;
         if (enoughValidationsReached.call(this)) {
@@ -22,6 +22,10 @@ function TimeSpent(members, timespentSubmitterId) {
 
   function notTryingToSelfValidate(verifierId) {
     return this._timespentSubmitterId !== verifierId;
+  }
+
+  function hasNotVerifiedYet(verifierId) {
+    return this._verfiers.indexOf(verifierId) === -1;
   }
 
   function enoughValidationsReached() {
