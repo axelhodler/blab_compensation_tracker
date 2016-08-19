@@ -34,3 +34,14 @@ Feature: Verify Compensation
     Given timespent of member 1
     When member 1 verifies timespent
     Then timespent is not verified
+
+  Scenario: Members cant verify multiple times
+    Given following members exist:
+      | memberId |
+      | 1 |
+      | 2 |
+      | 3 |
+    Given timespent of member 1
+    Given member 2 has verified timespent
+    When member 2 verifies timespent
+    Then timespent is not verified
