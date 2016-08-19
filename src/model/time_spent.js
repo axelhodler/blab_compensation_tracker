@@ -8,7 +8,7 @@ function TimeSpent(members, memberId) {
     }
   };
 
-  this.isVerified = function() {
+  this.isValid = function() {
     return this._verificationCount === members.requiredMajority() ? true : false;
   };
 }
