@@ -8,7 +8,6 @@ Feature: List unverified reports
     When fetching a list of unverified reports
     Then the list consists of the report "07123e" by member 1
 
-  @ignore
   Scenario: List verified reports
     Given an unverified report "07123e" by member 1
     Given a verified report "01234d" by member 2

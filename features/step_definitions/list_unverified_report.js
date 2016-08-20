@@ -23,6 +23,7 @@ module.exports = function() {
 
   this.When(/^adding an unverified report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
     reports.add(new Report(reportId, memberId));
+    listOfReports = reports.list();
   });
 
   this.When(/^fetch unverified report "([^"]*)"$/, function(reportId) {
