@@ -7,7 +7,9 @@ function Reports() {
   };
 
   this.list = function() {
-    return this._reports;
+    return Object.keys(this._reports).map(function(key) {
+      return this._reports[key];
+    }.bind(this));
   };
 
   this.fetch = function(reportId) {
