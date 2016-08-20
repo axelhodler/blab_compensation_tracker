@@ -9,7 +9,7 @@ Feature: Verify Compensation
       | 1 |
       | 2 |
       | 3 |
-    Given timespent of member 2
+    Given report of member 2
     When member 3 verifies timespent
     Then timespent is not verified
 
@@ -21,7 +21,7 @@ Feature: Verify Compensation
       | 3        |
       | 4        |
       | 5        |
-    Given timespent of member 2
+    Given report of member 2
     Given member 3 has verified timespent
     Given member 4 has verified timespent
     When member 5 verifies timespent
@@ -31,7 +31,7 @@ Feature: Verify Compensation
     Given following members exist:
       | memberId |
       | 1        |
-    Given timespent of member 1
+    Given report of member 1
     When member 1 verifies timespent
     Then timespent is not verified
 
@@ -41,7 +41,7 @@ Feature: Verify Compensation
       | 1 |
       | 2 |
       | 3 |
-    Given timespent of member 1
+    Given report of member 1
     Given member 2 has verified timespent
     When member 2 verifies timespent
     Then timespent is not verified
