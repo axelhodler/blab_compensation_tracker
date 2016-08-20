@@ -1,5 +1,5 @@
 function TimeSpent(members, timespentSubmitterId) {
-  this._timespentSubmitterId = timespentSubmitterId;
+  this._timespentSubmitterId = timespentSubmitterId.submitter();
   this._isValid = false;
   this._membersHavingVerified = [];
 
