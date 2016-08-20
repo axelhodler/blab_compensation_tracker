@@ -15,11 +15,16 @@ module.exports = function() {
     listOfReports = reports.list();
   });
 
+  this.When(/^adding an unverified report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
+    reports.add(new Report(reportId, memberId));
+  });
+
   this.When(/^fetch unverified report "([^"]*)"$/, function(reportId) {
     report = reports.fetch(reportId);
   });
 
   this.Then(/^the list consists of the report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
+    listOfReports = reports.list();
     expect(Object.keys(listOfReports).length).to.equal(1);
     expect(listOfReports[reportId]).to.equal(memberId);
   });

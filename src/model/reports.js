@@ -1,7 +1,9 @@
 function Reports() {
   this._reports = {};
   this.add = function(report) {
-    this._reports[report.id()] = report.submitter();
+    if (!this._reports[report.id()]) {
+      this._reports[report.id()] = report.submitter();
+    }
   };
 
   this.list = function() {
