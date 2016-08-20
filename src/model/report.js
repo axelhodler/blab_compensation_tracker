@@ -9,19 +9,11 @@ function Report(reportId, memberId) {
   };
 
   this.verifyBy = function(verifierId) {
-    if (this.notTryingToSelfValidate(verifierId)) {
-      if (this.hasNotVerifiedYet(verifierId)) {
+    if (notTryingToSelfValidate.call(this, verifierId)) {
+      if (hasNotVerifiedYet.call(this, verifierId)) {
         this._membersHavingVerified.push(verifierId);
       }
     }
-  };
-
-  this.notTryingToSelfValidate = function(verifierId) {
-    return this._memberId !== verifierId;
-  };
-
-  this.hasNotVerifiedYet = function(verifierId) {
-    return this._membersHavingVerified.indexOf(verifierId) === -1;
   };
 
   this.submitter = function() {
@@ -35,6 +27,14 @@ function Report(reportId, memberId) {
   this.isValid = function() {
     return this._isValid;
   };
+
+  function notTryingToSelfValidate(verifierId) {
+    return this._memberId !== verifierId;
+  }
+
+  function hasNotVerifiedYet(verifierId) {
+    return this._membersHavingVerified.indexOf(verifierId) === -1;
+  }
 }
 
 module.exports = Report;
