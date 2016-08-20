@@ -2,7 +2,7 @@ function Reports() {
   this._reports = {};
   this.add = function(report) {
     if (reportNotAlreadyAdded.call(this, report)) {
-      this._reports[report.id()] = report.submitter();
+      this._reports[report.id()] = report;
     }
   };
 

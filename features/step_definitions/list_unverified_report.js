@@ -26,11 +26,13 @@ module.exports = function() {
   this.Then(/^the list consists of the report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
     listOfReports = reports.list();
     expect(Object.keys(listOfReports).length).to.equal(1);
-    expect(listOfReports[reportId]).to.equal(memberId);
+    expect(listOfReports[reportId].id()).to.equal(reportId);
+    expect(listOfReports[reportId].submitter()).to.equal(memberId);
   });
 
   this.Then(/^the result is the report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
-    expect(report).to.equal(memberId);
+    expect(report.id()).to.equal(reportId);
+    expect(report.submitter()).to.equal(memberId);
   });
 
 };
