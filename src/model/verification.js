@@ -1,5 +1,4 @@
 function Verification(members, reports) {
-  this._reports = reports;
 
   this.verify = function(verifierId, reportId) {
     var report = reports.fetch(reportId);
