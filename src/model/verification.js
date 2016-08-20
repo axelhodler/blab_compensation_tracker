@@ -4,14 +4,10 @@ function Verification(members, reports) {
   this.verify = function(verifierId, reportId) {
     var report = reports.fetch(reportId);
     report.verifyBy(verifierId);
-    if (enoughValidationsReached(report._membersHavingVerified)) {
+    if (report.hasReceivedEnoughVerifications(members.requiredMajority())) {
       report.makeValid();
     }
   };
-
-  function enoughValidationsReached(membersHavingVerified) {
-    return membersHavingVerified.length === members.requiredMajority();
-  }
 
 }
 

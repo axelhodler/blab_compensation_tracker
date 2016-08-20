@@ -16,6 +16,10 @@ function Report(reportId, memberId) {
     }
   };
 
+  this.hasReceivedEnoughVerifications = function(requiredMajority) {
+    return this._membersHavingVerified.length === requiredMajority;
+  };
+
   this.submitter = function() {
     return this._memberId;
   };
