@@ -1,14 +1,11 @@
 var ReportVerification = require('../../src/actions/report_verification');
-var Reports = require('../../src/model/reports');
 var Report = require('../../src/model/report');
 
 module.exports = function() {
   var reportVerification,
-    report,
-    reports;
+    report;
 
   this.Given(/^report of member (\d+) with id "([^"]*)"$/, function (memberId, reportId) {
-    reports = new Reports();
     report = new Report(reportId, memberId);
     reports.add(report);
     reportVerification = new ReportVerification(members, reports);

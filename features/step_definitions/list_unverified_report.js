@@ -1,13 +1,10 @@
 var Report = require('../../src/model/report');
-var Reports = require('../../src/model/reports');
 
 module.exports = function() {
-  var reports,
-    listOfReports,
+  var listOfReports,
     report;
 
   this.Given(/^an unverified report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
-    reports = new Reports();
     reports.add(new Report(reportId, memberId));
   });
 
@@ -18,11 +15,6 @@ module.exports = function() {
   });
 
   this.When(/^fetching a list of unverified reports$/, function() {
-    listOfReports = reports.list();
-  });
-
-  this.When(/^adding an unverified report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
-    reports.add(new Report(reportId, memberId));
     listOfReports = reports.list();
   });
 

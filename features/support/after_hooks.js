@@ -5,6 +5,7 @@ var afterHooks = function () {
 
   this.After(function (scenario) {
     resetMembersList();
+    reports = new Reports();
   });
 };
 
