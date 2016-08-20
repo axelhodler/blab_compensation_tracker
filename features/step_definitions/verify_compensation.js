@@ -14,8 +14,8 @@ module.exports = function() {
     timeSpent.verify(memberId, reportId);
   });
 
-  this.Given(/^member (\d+) has verified report$/, function(memberId) {
-    timeSpent.verify(memberId);
+  this.Given(/^member (\d+) has verified report with id "([^"]*)"$/, function(memberId, reportId) {
+    timeSpent.verify(memberId, reportId);
   });
 
   this.Given(/^following members exist:$/, function (table) {
