@@ -34,9 +34,7 @@ module.exports = function() {
   });
 
   this.Then(/^the list consists of the report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
-    listOfReports = reports.list();
     expect(Object.keys(listOfReports).length).to.equal(1);
-    console.log(listOfReports);
     expect(listOfReports[0].id()).to.equal(reportId);
     expect(listOfReports[0].submitter()).to.equal(memberId);
   });
