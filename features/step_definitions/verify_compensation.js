@@ -5,11 +5,6 @@ module.exports = function() {
   var timeSpent,
     report;
 
-  this.Given(/^report of member (\d+)$/, function(memberId) {
-    report = new Report(null, memberId);
-    timeSpent = new TimeSpent(members, report);
-  });
-
   this.Given(/^report of member (\d+) with id "([^"]*)"$/, function (memberId, reportId) {
     report = new Report(reportId, memberId);
     timeSpent = new TimeSpent(members, report);
