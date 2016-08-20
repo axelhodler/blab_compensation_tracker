@@ -3,7 +3,7 @@ var Reports = require('../../src/model/reports');
 var Report = require('../../src/model/report');
 
 module.exports = function() {
-  var timeSpent,
+  var verification,
     report,
     reports;
 
@@ -11,15 +11,15 @@ module.exports = function() {
     reports = new Reports();
     report = new Report(reportId, memberId);
     reports.add(report);
-    timeSpent = new Verification(members, reports);
+    verification = new Verification(members, reports);
   });
 
   this.When(/^member (\d+) verifies report with id "([^"]*)"$/, function (memberId, reportId) {
-    timeSpent.verify(memberId, reportId);
+    verification.verify(memberId, reportId);
   });
 
   this.Given(/^member (\d+) has verified report with id "([^"]*)"$/, function(memberId, reportId) {
-    timeSpent.verify(memberId, reportId);
+    verification.verify(memberId, reportId);
   });
 
   this.Given(/^following members exist:$/, function (table) {
