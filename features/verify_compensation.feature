@@ -21,7 +21,7 @@ Feature: Verify Compensation
       | 3        |
       | 4        |
       | 5        |
-    Given report of member 2
+    Given report of member 2 with id "07123e"
     Given member 3 has verified timespent
     Given member 4 has verified timespent
     When member 5 verifies timespent

@@ -10,6 +10,11 @@ module.exports = function() {
     timeSpent = new TimeSpent(members, report);
   });
 
+  this.Given(/^report of member (\d+) with id "([^"]*)"$/, function (memberId, reportId) {
+    report = new Report(reportId, memberId);
+    timeSpent = new TimeSpent(members, report);
+  });
+
   this.Given(/^member (\d+) has verified timespent$/, function(memberId) {
     timeSpent.verify(memberId);
   });
