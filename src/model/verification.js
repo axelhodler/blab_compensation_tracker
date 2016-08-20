@@ -3,10 +3,10 @@ function Verification(members, reports) {
 
   this.verify = function(verifierId, reportId) {
     var report = reports.fetch(reportId);
-    if (notTryingToSelfValidate.call(this, verifierId, report.submitter())) {
-      if (hasNotVerifiedYet.call(this, verifierId, report._membersHavingVerified)) {
+    if (notTryingToSelfValidate(verifierId, report.submitter())) {
+      if (hasNotVerifiedYet(verifierId, report._membersHavingVerified)) {
         report._membersHavingVerified.push(verifierId);
-        if (enoughValidationsReached.call(this, report._membersHavingVerified)) {
+        if (enoughValidationsReached(report._membersHavingVerified)) {
           report.makeValid();
         }
       }
