@@ -1,13 +1,17 @@
 var Verification = require('../../src/model/verification');
+var Reports = require('../../src/model/reports');
 var Report = require('../../src/model/report');
 
 module.exports = function() {
   var timeSpent,
-    report;
+    report,
+    reports;
 
   this.Given(/^report of member (\d+) with id "([^"]*)"$/, function (memberId, reportId) {
+    reports = new Reports();
     report = new Report(reportId, memberId);
-    timeSpent = new Verification(members, report);
+    reports.add(report);
+    timeSpent = new Verification(members, reports);
   });
 
   this.When(/^member (\d+) verifies report with id "([^"]*)"$/, function (memberId, reportId) {

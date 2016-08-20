@@ -1,20 +1,21 @@
-function Verification(members, report) {
-  this._report = report;
+function Verification(members, reports) {
+  this._reports = reports;
   this._membersHavingVerified = [];
 
   this.verify = function(verifierId, reportId) {
-    if (notTryingToSelfValidate.call(this, verifierId)) {
+    var report = reports.fetch(reportId);
+    if (notTryingToSelfValidate.call(this, verifierId, report.submitter())) {
       if (hasNotVerifiedYet.call(this, verifierId)) {
         this._membersHavingVerified.push(verifierId);
         if (enoughValidationsReached.call(this)) {
-          this._report.makeValid();
+          report.makeValid();
         }
       }
     }
   };
 
-  function notTryingToSelfValidate(verifierId) {
-    return this._report.submitter() !== verifierId;
+  function notTryingToSelfValidate(verifierId, submitterId) {
+    return submitterId !== verifierId;
   }
 
   function hasNotVerifiedYet(verifierId) {
