@@ -1,6 +1,6 @@
 function TimeSpent(members, timespentSubmitterId) {
+  this._report = timespentSubmitterId;
   this._timespentSubmitterId = timespentSubmitterId.submitter();
-  this._isValid = false;
   this._membersHavingVerified = [];
 
   this.verify = function(verifierId) {
@@ -8,14 +8,14 @@ function TimeSpent(members, timespentSubmitterId) {
       if (hasNotVerifiedYet.call(this, verifierId)) {
         this._membersHavingVerified.push(verifierId);
         if (enoughValidationsReached.call(this)) {
-          this._isValid = true;
+          this._report.makeValid();
         }
       }
     }
   };
 
   this.isValid = function() {
-    return this._isValid;
+    return this._report.isValid();
   };
 
   function notTryingToSelfValidate(verifierId) {
