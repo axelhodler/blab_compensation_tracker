@@ -14,7 +14,7 @@ module.exports = function() {
     timeSpent.verify(memberId, reportId);
   });
 
-  this.Given(/^member (\d+) has verified timespent$/, function(memberId) {
+  this.Given(/^member (\d+) has verified report$/, function(memberId) {
     timeSpent.verify(memberId);
   });
 
@@ -24,11 +24,11 @@ module.exports = function() {
     });
   });
 
-  this.Then(/^timespent is verified$/, function() {
+  this.Then(/^report is verified$/, function() {
     expect(report.isValid()).to.be.true;
   });
 
-  this.Then(/^timespent is not verified$/, function () {
+  this.Then(/^report is not verified$/, function () {
     expect(report.isValid()).to.be.false;
   });
 };
