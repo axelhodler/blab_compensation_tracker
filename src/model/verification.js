@@ -3,7 +3,7 @@ function Verification(members, reports) {
 
   this.verify = function(verifierId, reportId) {
     var report = reports.fetch(reportId);
-    if (notTryingToSelfValidate(verifierId, report.submitter())) {
+    if (report.notTryingToSelfValidate(verifierId)) {
       if (hasNotVerifiedYet(verifierId, report._membersHavingVerified)) {
         report._membersHavingVerified.push(verifierId);
         if (enoughValidationsReached(report._membersHavingVerified)) {
@@ -12,10 +12,6 @@ function Verification(members, reports) {
       }
     }
   };
-
-  function notTryingToSelfValidate(verifierId, submitterId) {
-    return submitterId !== verifierId;
-  }
 
   function hasNotVerifiedYet(verifierId, membersHavingVerified) {
     return membersHavingVerified.indexOf(verifierId) === -1;

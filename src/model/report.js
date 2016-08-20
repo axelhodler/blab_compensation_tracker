@@ -8,6 +8,10 @@ function Report(reportId, memberId) {
     return this._reportId;
   };
 
+  this.notTryingToSelfValidate = function(verifierId) {
+    return this._memberId !== verifierId;
+  };
+
   this.submitter = function() {
     return this._memberId;
   };
