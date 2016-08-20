@@ -1,4 +1,4 @@
-function Verification(members, reports) {
+function ReportVerification(members, reports) {
 
   this.verify = function(verifierId, reportId) {
     var report = reports.fetch(reportId);
@@ -10,4 +10,4 @@ function Verification(members, reports) {
 
 }
 
-module.exports = Verification;
+module.exports = ReportVerification;
