@@ -10,6 +10,10 @@ module.exports = function() {
     timeSpent = new TimeSpent(members, report);
   });
 
+  this.When(/^member (\d+) verifies report with id "([^"]*)"$/, function (memberId, reportId) {
+    timeSpent.verify(memberId, reportId);
+  });
+
   this.Given(/^member (\d+) has verified timespent$/, function(memberId) {
     timeSpent.verify(memberId);
   });
@@ -18,10 +22,6 @@ module.exports = function() {
     table.rows().forEach(function(memberId) {
       members.add(memberId);
     });
-  });
-
-  this.When(/^member (\d+) verifies timespent$/, function(memberId) {
-    timeSpent.verify(memberId);
   });
 
   this.Then(/^timespent is verified$/, function() {

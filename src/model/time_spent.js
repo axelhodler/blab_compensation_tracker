@@ -3,7 +3,7 @@ function TimeSpent(members, timespentSubmitterId) {
   this._timespentSubmitterId = timespentSubmitterId.submitter();
   this._membersHavingVerified = [];
 
-  this.verify = function(verifierId) {
+  this.verify = function(verifierId, reportId) {
     if (notTryingToSelfValidate.call(this, verifierId)) {
       if (hasNotVerifiedYet.call(this, verifierId)) {
         this._membersHavingVerified.push(verifierId);

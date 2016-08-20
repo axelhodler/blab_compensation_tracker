@@ -10,7 +10,7 @@ Feature: Verify Compensation
       | 2 |
       | 3 |
     Given report of member 2 with id "07123e"
-    When member 3 verifies timespent
+    When member 3 verifies report with id "07123e"
     Then timespent is not verified
 
   Scenario: It takes a majority of members for a timespent to be verified
@@ -24,7 +24,7 @@ Feature: Verify Compensation
     Given report of member 2 with id "07123e"
     Given member 3 has verified timespent
     Given member 4 has verified timespent
-    When member 5 verifies timespent
+    When member 5 verifies report with id "07123e"
     Then timespent is verified
 
   Scenario: Members cant verify their own timespent
@@ -32,7 +32,7 @@ Feature: Verify Compensation
       | memberId |
       | 1        |
     Given report of member 1 with id "07123e"
-    When member 1 verifies timespent
+    When member 1 verifies report with id "07123e"
     Then timespent is not verified
 
   Scenario: Members cant verify multiple times
@@ -43,5 +43,5 @@ Feature: Verify Compensation
       | 3 |
     Given report of member 1 with id "07123e"
     Given member 2 has verified timespent
-    When member 2 verifies timespent
+    When member 2 verifies report with id "07123e"
     Then timespent is not verified
