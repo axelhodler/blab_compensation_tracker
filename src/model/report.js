@@ -2,6 +2,7 @@ function Report(reportId, memberId) {
   this._reportId = reportId;
   this._memberId = memberId;
   this._isValid = false;
+  this._membersHavingVerified = [];
 
   this.id = function() {
     return this._reportId;

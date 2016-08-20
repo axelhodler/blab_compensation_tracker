@@ -1,13 +1,12 @@
 function Verification(members, reports) {
   this._reports = reports;
-  this._membersHavingVerified = [];
 
   this.verify = function(verifierId, reportId) {
     var report = reports.fetch(reportId);
     if (notTryingToSelfValidate.call(this, verifierId, report.submitter())) {
-      if (hasNotVerifiedYet.call(this, verifierId)) {
-        this._membersHavingVerified.push(verifierId);
-        if (enoughValidationsReached.call(this)) {
+      if (hasNotVerifiedYet.call(this, verifierId, report._membersHavingVerified)) {
+        report._membersHavingVerified.push(verifierId);
+        if (enoughValidationsReached.call(this, report._membersHavingVerified)) {
           report.makeValid();
         }
       }
@@ -18,12 +17,12 @@ function Verification(members, reports) {
     return submitterId !== verifierId;
   }
 
-  function hasNotVerifiedYet(verifierId) {
-    return this._membersHavingVerified.indexOf(verifierId) === -1;
+  function hasNotVerifiedYet(verifierId, membersHavingVerified) {
+    return membersHavingVerified.indexOf(verifierId) === -1;
   }
 
-  function enoughValidationsReached() {
-    return this._membersHavingVerified.length === members.requiredMajority();
+  function enoughValidationsReached(membersHavingVerified) {
+    return membersHavingVerified.length === members.requiredMajority();
   }
 
 }
