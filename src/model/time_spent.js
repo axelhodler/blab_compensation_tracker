@@ -1,5 +1,5 @@
-function TimeSpent(members, timespentSubmitterId) {
-  this._report = timespentSubmitterId;
+function TimeSpent(members, report) {
+  this._report = report;
   this._membersHavingVerified = [];
 
   this.verify = function(verifierId, reportId) {
