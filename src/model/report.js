@@ -8,6 +8,14 @@ function Report(reportId, memberId) {
     return this._reportId;
   };
 
+  this.verifyBy = function(verifierId) {
+    if (this.notTryingToSelfValidate(verifierId)) {
+      if (this.hasNotVerifiedYet(verifierId)) {
+        this._membersHavingVerified.push(verifierId);
+      }
+    }
+  };
+
   this.notTryingToSelfValidate = function(verifierId) {
     return this._memberId !== verifierId;
   };

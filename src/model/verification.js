@@ -3,13 +3,9 @@ function Verification(members, reports) {
 
   this.verify = function(verifierId, reportId) {
     var report = reports.fetch(reportId);
-    if (report.notTryingToSelfValidate(verifierId)) {
-      if (report.hasNotVerifiedYet(verifierId)) {
-        report._membersHavingVerified.push(verifierId);
-        if (enoughValidationsReached(report._membersHavingVerified)) {
-          report.makeValid();
-        }
-      }
+    report.verifyBy(verifierId);
+    if (enoughValidationsReached(report._membersHavingVerified)) {
+      report.makeValid();
     }
   };
 
