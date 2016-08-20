@@ -25,10 +25,10 @@ module.exports = function() {
   });
 
   this.Then(/^timespent is verified$/, function() {
-    expect(timeSpent.isValid()).to.be.true;
+    expect(report.isValid()).to.be.true;
   });
 
   this.Then(/^timespent is not verified$/, function () {
-    expect(timeSpent.isValid()).to.be.false;
+    expect(report.isValid()).to.be.false;
   });
 };

@@ -14,10 +14,6 @@ function TimeSpent(members, timespentSubmitterId) {
     }
   };
 
-  this.isValid = function() {
-    return this._report.isValid();
-  };
-
   function notTryingToSelfValidate(verifierId) {
     return this._timespentSubmitterId !== verifierId;
   }
