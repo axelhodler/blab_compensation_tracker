@@ -1,6 +1,5 @@
 function TimeSpent(members, timespentSubmitterId) {
   this._report = timespentSubmitterId;
-  this._timespentSubmitterId = timespentSubmitterId.submitter();
   this._membersHavingVerified = [];
 
   this.verify = function(verifierId, reportId) {
@@ -15,7 +14,7 @@ function TimeSpent(members, timespentSubmitterId) {
   };
 
   function notTryingToSelfValidate(verifierId) {
-    return this._timespentSubmitterId !== verifierId;
+    return this._report.submitter() !== verifierId;
   }
 
   function hasNotVerifiedYet(verifierId) {
