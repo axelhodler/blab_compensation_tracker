@@ -12,6 +12,10 @@ function Report(reportId, memberId) {
     return this._memberId !== verifierId;
   };
 
+  this.hasNotVerifiedYet = function(verifierId) {
+    return this._membersHavingVerified.indexOf(verifierId) === -1;
+  };
+
   this.submitter = function() {
     return this._memberId;
   };
