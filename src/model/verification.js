@@ -1,4 +1,4 @@
-function TimeSpent(members, report) {
+function Verification(members, report) {
   this._report = report;
   this._membersHavingVerified = [];
 
@@ -27,4 +27,4 @@ function TimeSpent(members, report) {
 
 }
 
-module.exports = TimeSpent;
+module.exports = Verification;
