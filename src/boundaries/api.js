@@ -15,12 +15,12 @@ app.get('/', function (req, res) {
 
 // All the following routes are not REST conform, all using get for initial testing purposes
 app.get('/createreport', function(req, res) {
-  reports.add(new Report(req.params.id, req.params.submitterId));
+  reports.add(new Report(req.query.id, req.query.submitterId));
   res.send();
 });
 
 app.get('/verify', function(req, res) {
-  verification.verify(req.params.verifier, req.params.id);
+  verification.verify(req.query.verifier, req.query.id);
   res.send();
 });
 
