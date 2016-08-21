@@ -2,6 +2,9 @@
   "name": "compensation_tracker",
   "version": "0.0.1",
   "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
   "devDependencies": {
     "chai": "^3.5.0",
     "cucumber": "^1.2.2"
