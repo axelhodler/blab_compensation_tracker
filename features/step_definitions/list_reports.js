@@ -37,4 +37,9 @@ module.exports = function() {
     expect(report.submitter()).to.equal(memberId);
   });
 
+  this.Then(/^the list contains the report "([^"]*)" by member (\d+) on position (\d+)$/, function(reportId, memberId, position) {
+    expect(listOfReports[position].id()).to.equal(reportId);
+    expect(listOfReports[position].submitter()).to.equal(memberId);
+  });
+
 };
