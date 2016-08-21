@@ -8,12 +8,6 @@ Feature: List unverified reports
     When fetching a list of unverified reports
     Then the list consists of the report "07123e" by member 1
 
-  Scenario: List verified reports
-    Given an unverified report "07123e" by member 1
-    Given a verified report "01234d" by member 2
-    When fetching a list of verified reports
-    Then the list consists of the report "01234d" by member 2
-
   Scenario: Show single unverified report
     Given an unverified report "07123e" by member 1
     When fetch unverified report "07123e"
