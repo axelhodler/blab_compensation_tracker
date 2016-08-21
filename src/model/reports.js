@@ -9,7 +9,9 @@ function Reports() {
   this.unverified = function() {
     return Object.keys(this._reports).map(function(key) {
       return this._reports[key];
-    }.bind(this));
+    }.bind(this)).filter(function(report) {
+      return !report.isValid();
+    });
   };
 
   this.verified = function() {
