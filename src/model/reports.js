@@ -6,7 +6,7 @@ function Reports() {
     }
   };
 
-  this.list = function() {
+  this.unverified = function() {
     return Object.keys(this._reports).map(function(key) {
       return this._reports[key];
     }.bind(this));
