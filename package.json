@@ -10,6 +10,7 @@
     "cucumber": "^1.2.2"
   },
   "scripts": {
+    "start": "node src/boundaries/api.js",
     "test": "./node_modules/.bin/cucumber.js --tags ~@ignore features",
     "test1": "./node_modules/.bin/cucumber.js --tags @only features"
   }
