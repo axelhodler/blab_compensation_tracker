@@ -19,10 +19,14 @@ app.get('/', function (req, res) {
   res.send('WIRED UP');
 });
 
-// All the following routes are not REST conform, all using get for initial testing purposes
-app.get('/addmember/:memberId', function(req, res) {
-  members.add(req.params.memberId);
-  res.send();
+app.get('/members', function(req, res) {
+  res.send(toJSONAPI.members(members.members));
+});
+
+app.post('/members', function(req, res) {
+  var data = req.body.data;
+  members.add(data.id);
+  res.send(toJSONAPI.member(req.body.data));
 });
 
 app.post('/reports', function(req, res) {
@@ -39,6 +43,7 @@ app.get('/verify', function(req, res) {
 app.get('/reports/:report_id', function(req, res) {
   res.send(toJSONAPI.report(reports.fetch(req.params.report_id)));
 });
+
 app.get('/reports', function(req, res) {
   res.send(toJSONAPI.reports(reports.unverified()));
 });

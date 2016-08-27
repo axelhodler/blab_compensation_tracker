@@ -20,6 +20,21 @@ function transformReport(report) {
   return report;
 }
 
+function transformMember(member) {
+  member.type = "members";
+  member.attributes = {};
+  return member;
+}
+
+function transformMemberIdToMember(memberId) {
+  var member = {};
+
+  member.id = memberId;
+  member.type = "members";
+  member.attributes = {};
+  return member;
+}
+
 module.exports =  {
   reports: function(reports) {
     return wrapInData(reports.map(function(item) {
@@ -28,5 +43,13 @@ module.exports =  {
   },
   report: function(report) {
     return wrapInData(transformReport(clone(report)))
+  },
+  members: function(members) {
+    return wrapInData(members.map(function(member) {
+      return transformMemberIdToMember(clone(member));
+    }))
+  },
+  member: function(member) {
+    return wrapInData(transformMember(clone(member)));
   }
 };
