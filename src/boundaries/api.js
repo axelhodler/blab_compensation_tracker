@@ -3,6 +3,8 @@ var Reports = require('../model/reports');
 var Report = require('../model/report');
 var ReportVerification = require('../actions/report_verification');
 
+var toJSONAPI = require('./to_jsonapi');
+
 var express = require('express');
 var app = express();
 
@@ -29,8 +31,8 @@ app.get('/verify', function(req, res) {
   res.send();
 });
 
-app.get('/unverified', function(req, res) {
-  res.send(reports.unverified());
+app.get('/reports', function(req, res) {
+  res.send(toJSONAPI.reports(reports.unverified()));
 });
 
 app.get('/verified', function(req, res) {
