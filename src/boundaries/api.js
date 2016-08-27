@@ -36,6 +36,9 @@ app.get('/verify', function(req, res) {
   res.send();
 });
 
+app.get('/reports/:report_id', function(req, res) {
+  res.send(toJSONAPI.report(reports.fetch(req.params.report_id)));
+});
 app.get('/reports', function(req, res) {
   res.send(toJSONAPI.reports(reports.unverified()));
 });
