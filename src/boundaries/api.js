@@ -6,7 +6,11 @@ var ReportVerification = require('../actions/report_verification');
 var toJSONAPI = require('./to_jsonapi');
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+app.use(bodyParser.json({
+  type: 'application/vnd.api+json'
+}));
 
 var reports = new Reports();
 var verification = new ReportVerification(members, reports);
@@ -21,8 +25,9 @@ app.get('/addmember/:memberId', function(req, res) {
   res.send();
 });
 
-app.get('/createreport', function(req, res) {
-  reports.add(new Report(req.query.id, req.query.submitterId));
+app.post('/reports', function(req, res) {
+  var data = req.body.data;
+  reports.add(new Report(data.id, data.attributes['submitter-id']));
   res.send();
 });
 
