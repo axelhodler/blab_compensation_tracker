@@ -28,7 +28,7 @@ app.get('/addmember/:memberId', function(req, res) {
 app.post('/reports', function(req, res) {
   var data = req.body.data;
   reports.add(new Report(data.id, data.attributes['submitter-id']));
-  res.send();
+  res.send(req.body);
 });
 
 app.get('/verify', function(req, res) {
