@@ -2,7 +2,7 @@ function Reports() {
   this._reports = {};
   this.add = function(report) {
     if (reportNotAlreadyAdded.call(this, report)) {
-      this._reports[report.id()] = report;
+      this._reports[report.id] = report;
     }
   };
 
@@ -27,7 +27,7 @@ function Reports() {
   };
 
   function reportNotAlreadyAdded(report) {
-    return !this._reports[report.id()];
+    return !this._reports[report.id];
   }
 
 }

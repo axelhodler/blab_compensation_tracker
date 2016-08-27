@@ -1,12 +1,8 @@
-function Report(reportId, submitterId) {
-  this.reportId = reportId;
+function Report(id, submitterId) {
+  this.id = id;
   this.submitterId = submitterId;
   this.valid = false;
   this.verifiers = [];
-
-  this.id = function() {
-    return this.reportId;
-  };
 
   this.verifyBy = function(verifierId) {
     if (notTryingToSelfValidate.call(this, verifierId)) {
