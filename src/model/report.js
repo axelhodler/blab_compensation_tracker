@@ -1,6 +1,6 @@
-function Report(reportId, memberId) {
+function Report(reportId, submitterId) {
   this.reportId = reportId;
-  this.memberId = memberId;
+  this.submitterId = submitterId;
   this.valid = false;
   this.verifiers = [];
 
@@ -21,7 +21,7 @@ function Report(reportId, memberId) {
   };
 
   this.submitter = function() {
-    return this.memberId;
+    return this.submitterId;
   };
 
   this.makeValid = function() {
@@ -33,7 +33,7 @@ function Report(reportId, memberId) {
   };
 
   function notTryingToSelfValidate(verifierId) {
-    return this.memberId !== verifierId;
+    return this.submitterId !== verifierId;
   }
 
   function hasNotVerifiedYet(verifierId) {
