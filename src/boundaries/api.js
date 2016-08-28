@@ -35,9 +35,12 @@ app.post('/reports', function(req, res) {
   res.send(req.body);
 });
 
-app.get('/verify', function(req, res) {
-  verification.verify(req.query.verifier, req.query.id);
-  res.send();
+app.post('/verifications', function(req, res) {
+  var data = req.body.data;
+  var memberId = data.relationships.member.data.id;
+  var reportId = data.relationships.report.data.id;
+  verification.verify(memberId, reportId);
+  res.send(req.body);
 });
 
 app.get('/reports/:report_id', function(req, res) {

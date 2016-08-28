@@ -10,6 +10,9 @@ function transformReport(report) {
   attrs['submitter-id'] = report.submitterId;
   attrs.valid = report.valid;
   attrs.verifiers = report.verifiers;
+  var relationshipData = report.verifiers.map(function(verifier) {
+    return { type: "verifications", id: verifier}
+  });
 
   delete report.submitterId;
   delete report.valid;
@@ -17,6 +20,9 @@ function transformReport(report) {
 
   report.type = "reports";
   report.attributes = attrs;
+  if (relationshipData) {
+    report.relationships = {verifications: { data: relationshipData}};
+  }
   return report;
 }
 
