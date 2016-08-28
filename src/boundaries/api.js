@@ -53,7 +53,7 @@ app.get('/reports/:report_id', function(req, res) {
 });
 
 app.get('/reports', function(req, res) {
-  res.send(toJSONAPI.reports(reports.unverified()));
+  res.send(toJSONAPI.reports(reports.all()));
 });
 
 app.get('/verified', function(req, res) {

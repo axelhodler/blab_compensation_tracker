@@ -22,6 +22,12 @@ function Reports() {
     });
   };
 
+  this.all = function() {
+    return Object.keys(this._reports).map(function(key) {
+      return this._reports[key];
+    }.bind(this));
+  };
+
   this.fetch = function(reportId) {
     return this._reports[reportId];
   };
