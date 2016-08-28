@@ -35,6 +35,11 @@ app.post('/reports', function(req, res) {
   res.send(req.body);
 });
 
+app.get('/verifications/:member_id', function(req, res) {
+  var member = {id: req.params.member_id}
+  res.send(toJSONAPI.member(member));
+});
+
 app.post('/verifications', function(req, res) {
   var data = req.body.data;
   var memberId = data.relationships.member.data.id;
