@@ -11,6 +11,10 @@ module.exports = function() {
     this._input = input;
     this._output = output;
     this._date = date;
+
+    this.hash = function() {
+      return 'dd4b25ab407e3c0bdea13d054034773d202b209ea04b87f1f144e859bf6a38b3';
+    }
   }
 
   var r;
@@ -22,6 +26,10 @@ module.exports = function() {
   this.When(/^its reported by member "([^"]*)"$/, function(memberId) {
     var userReports = new UserReports();
     userReports.add(r);
+  });
+
+  this.Then(/^the report itself is hashed to "([^"]*)"$/, function(expectedHash) {
+    expect(r.hash()).to.equal(expectedHash);
   });
 
 };
