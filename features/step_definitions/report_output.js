@@ -23,6 +23,13 @@ module.exports = function() {
     r = new Report(hoursSpent, outputDescription, date);
   });
 
+  this.When(/^generating the hash of the report$/, function () {
+  });
+
+  this.Then(/^the hash is "([^"]*)"$/, function(expectedHash) {
+    expect(r.hash()).to.equal(expectedHash);
+  });
+
   this.When(/^its reported by member "([^"]*)"$/, function(memberId) {
     var userReports = new UserReports();
     userReports.add(r);
