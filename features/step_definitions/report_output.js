@@ -1,3 +1,5 @@
+var createHash = require('sha.js');
+
 module.exports = function() {
   function UserReports() {
     var reports = [];
@@ -13,7 +15,8 @@ module.exports = function() {
     this._date = date;
 
     this.hash = function() {
-      return 'dd4b25ab407e3c0bdea13d054034773d202b209ea04b87f1f144e859bf6a38b3';
+      var sha256 = createHash('sha256');
+      return sha256.update(this._output + ";" + this._input + ";" + this._date, 'utf8').digest('hex');
     }
   }
 
