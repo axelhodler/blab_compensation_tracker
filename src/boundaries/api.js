@@ -1,5 +1,6 @@
 var members = require('../model/members');
 var Reports = require('../model/reports');
+var UserReport = require('../model/user_report');
 var Report = require('../model/report');
 var ReportVerification = require('../actions/report_verification');
 
@@ -31,7 +32,8 @@ app.post('/members', function(req, res) {
 
 app.post('/reports', function(req, res) {
   var data = req.body.data;
-  reports.add(new Report(data.id, data.attributes['submitter-id']));
+  var r = new UserReport(data.attributes.input, data.attributes.output, data.attributes.date, data.attributes['submitter-id']);
+  reports.add(new Report(r.hash(), r._memberId));
   res.send(req.body);
 });
 
