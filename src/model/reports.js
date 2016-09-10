@@ -4,6 +4,7 @@ function Reports() {
     if (reportNotAlreadyAdded.call(this, report)) {
       this._reports[report.id] = report;
     }
+    return report;
   };
 
   this.unverified = function() {

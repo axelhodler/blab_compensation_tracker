@@ -33,9 +33,7 @@ app.post('/members', function(req, res) {
 app.post('/reports', function(req, res) {
   var data = req.body.data;
   var r = new UserReport(data.attributes.input, data.attributes.output, data.attributes.date, data.attributes['submitter-id']);
-  reports.add(new Report(r.hash(), r._memberId));
-  req.body.data.id = r.hash();
-  res.send(req.body);
+  res.send(toJSONAPI.report(reports.add(new Report(r.hash(), r._memberId))));
 });
 
 app.get('/verifications/:member_id', function(req, res) {
