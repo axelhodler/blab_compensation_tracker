@@ -1,4 +1,4 @@
-var createHash = require('sha.js');
+var Hash = require('../../src/actions/hash');
 
 module.exports = function() {
   function UserReports() {
@@ -15,8 +15,8 @@ module.exports = function() {
     this._date = date;
 
     this.hash = function() {
-      var sha256 = createHash('sha256');
-      return sha256.update(this._output + ";" + this._input + ";" + this._date, 'utf8').digest('hex');
+      var hash = new Hash(this._output + ";" + this._input + ";" + this._date);
+      return hash.value();
     }
   }
 
