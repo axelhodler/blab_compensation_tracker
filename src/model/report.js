@@ -1,4 +1,7 @@
 function Report(id, submitterId, input, output, date) {
+  if (date > new Date()) {
+    throw Error('chosen time cannot lie in the future');
+  }
   this.id = id;
   this.input = input;
   this.output = output;
