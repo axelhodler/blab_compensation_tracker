@@ -32,8 +32,19 @@ app.post('/members', function(req, res) {
 
 app.post('/reports', function(req, res) {
   var data = req.body.data;
-  var r = new UserReport(data.attributes.input, data.attributes.output, data.attributes.date, data.attributes['submitter-id']);
-  res.send(toJSONAPI.report(reports.add(new Report(r.hash(), r._memberId))));
+  try {
+    var r = new UserReport(data.attributes.input, data.attributes.output, data.attributes.date, data.attributes['submitter-id']);
+    res.send(toJSONAPI.report(reports.add(new Report(r.hash(), r._memberId))));
+  } catch(err) {
+    req.body.errors = [
+      {
+        'status': 422,
+        'title': 'Invalid Attribute',
+        'detail': err.message
+      }
+    ];
+    res.send(req.body);
+  }
 });
 
 app.get('/verifications/:member_id', function(req, res) {
