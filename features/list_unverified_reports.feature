@@ -13,12 +13,6 @@ Feature: List unverified reports
     When fetch unverified report "07123e"
     Then the result is the report "07123e" by member 1
 
-  Scenario: Trying to add the same report twice fails silently
-    Given an unverified report "07123e" by member 1
-    Given an unverified report "07123e" by member 2
-    When fetching a list of unverified reports
-    Then the list consists of the report "07123e" by member 1
-
   Scenario: Having multiple verified and unverified reports
     Given an unverified report "07123e" by member 1
     Given a verified report "01337g" by member 2

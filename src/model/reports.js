@@ -34,7 +34,11 @@ function Reports() {
   };
 
   function reportNotAlreadyAdded(report) {
-    return !this._reports[report.id];
+    if (this._reports[report.id]) {
+      throw Error('Adding would have created a duplicate report id');
+    } else {
+      return true;
+    }
   }
 
 }
