@@ -1,12 +1,9 @@
 var Hash = require('../../src/actions/hash');
 
-function UserReport(input, output, date, memberId) {
-  if (input < 1) {
-    throw Error('input has to be more than zero');
-  }
-  this._input = input;
-  this._output = output;
-  this._date = date;
+function UserReport(userChosenReportContents, memberId) {
+  this._input = userChosenReportContents.input;
+  this._output = userChosenReportContents.output;
+  this._date = userChosenReportContents.date;
   this._memberId = memberId;
 
   this.hash = function() {

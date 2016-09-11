@@ -1,8 +1,8 @@
 var expect = require('chai').expect;
-var UserReport = require('./user_report');
+var UserChosenReportContents = require('./user_chosen_report_contents');
 
 module.exports = {
   userReportDoesNotAcceptAnInputLessThanOneHour: function() {
-    expect(function() { new UserReport(0, 'foo', +new Date(), 'memberId'); }).to.throw(Error, /more than/);
+    expect(function() { new UserChosenReportContents(0, 'foo', +new Date()); }).to.throw(Error, /more than/);
   }
 };

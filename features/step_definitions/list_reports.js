@@ -5,11 +5,11 @@ module.exports = function() {
     report;
 
   this.Given(/^an unverified report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
-    reports.add(new Report(reportId, memberId));
+    reports.add(new Report(reportId, memberId, userChosenReportContents));
   });
 
   this.Given(/^a verified report "([^"]*)" by member (\d+)$/, function (reportId, memberId) {
-    var report = new Report(reportId, memberId);
+    var report = new Report(reportId, memberId, userChosenReportContents);
     report.makeValid();
     reports.add(report);
   });

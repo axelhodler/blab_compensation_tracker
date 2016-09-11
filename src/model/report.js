@@ -1,11 +1,8 @@
-function Report(id, submitterId, input, output, date) {
-  if (date > new Date()) {
-    throw Error('chosen time cannot lie in the future');
-  }
+function Report(id, submitterId, userChosenReportContents) {
   this.id = id;
-  this.input = input;
-  this.output = output;
-  this.date = date;
+  this.input = userChosenReportContents.input;
+  this.output = userChosenReportContents.output;
+  this.date = userChosenReportContents.date;
   this.submitterId = submitterId;
   this.valid = false;
   this.verifiers = [];

@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 var Reports = require('./reports');
 var Report = require('./report');
+var UserChosenReportContents = require('./user_chosen_report_contents');
 
 var reports;
 
@@ -9,15 +10,15 @@ module.exports = {
     reports = new Reports();
   },
   addingReportReturnsReport : function() {
-    var report = new Report('someId', 'someSubmitter');
+    var report = new Report('someId', 'someSubmitter', new UserChosenReportContents(1, 'foo', new Date()));
 
     var addedReport = reports.add(report);
 
     expect(addedReport.id).to.equal('someId');
   },
   addingReportWithSameHashTwiceThrows : function() {
-    var report = new Report('someId', 'someSubmitter');
-    var report2 = new Report('someId', 'someSubmitter');
+    var report = new Report('someId', 'someSubmitter', new UserChosenReportContents(1, 'foo', new Date()));
+    var report2 = new Report('someId', 'someSubmitter', new UserChosenReportContents(2, 'foo', new Date()));
 
     reports.add(report);
 
@@ -30,7 +31,7 @@ module.exports = {
     var date = new Date(inOneHour);
 
     expect(function() {
-      new Report('someId', 'someSubmitter', 1, 'something', inOneHour);
+      new UserChosenReportContents(1, 'something', inOneHour);
     }).to.throw(Error, 'in the future');
   }
 };

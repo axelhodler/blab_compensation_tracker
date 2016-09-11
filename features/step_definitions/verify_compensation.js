@@ -6,7 +6,7 @@ module.exports = function() {
     report;
 
   this.Given(/^report of member (\d+) with id "([^"]*)"$/, function (memberId, reportId) {
-    report = new Report(reportId, memberId);
+    report = new Report(reportId, memberId, userChosenReportContents);
     reports.add(report);
     reportVerification = new ReportVerification(members, reports);
   });

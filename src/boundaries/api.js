@@ -1,6 +1,7 @@
 var members = require('../model/members');
 var Reports = require('../model/reports');
 var UserReport = require('../model/user_report');
+var UserChosenReportContents = require('../model/user_chosen_report_contents');
 var Report = require('../model/report');
 var ReportVerification = require('../actions/report_verification');
 
@@ -33,7 +34,7 @@ app.post('/members', function(req, res) {
 app.post('/reports', function(req, res) {
   var data = req.body.data;
   try {
-    var r = new UserReport(data.attributes.input, data.attributes.output, data.attributes['created-on'], data.attributes['submitter-id']);
+    var r = new UserReport(new UserChosenReportContents(data.attributes.input, data.attributes.output, data.attributes['created-on']), data.attributes['submitter-id']);
     res.send(toJSONAPI.report(reports.add(new Report(r.hash(), r._memberId, r._input, r._output, r._date))));
   } catch(err) {
     req.body.errors = [
