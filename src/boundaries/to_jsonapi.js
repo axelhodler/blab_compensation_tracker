@@ -8,6 +8,9 @@ function wrapInData(content) {
 function transformReport(report) {
   var attrs = {};
   attrs['submitter-id'] = report.submitterId;
+  attrs['created-on'] = report.date;
+  attrs.input = report.input;
+  attrs.output = report.output;
   attrs.valid = report.valid;
   attrs.verifiers = report.verifiers;
   var relationshipData = report.verifiers.map(function(verifier) {
@@ -17,6 +20,9 @@ function transformReport(report) {
   delete report.submitterId;
   delete report.valid;
   delete report.verifiers;
+  delete report.date;
+  delete report.input;
+  delete report.output;
 
   report.type = "reports";
   report.attributes = attrs;

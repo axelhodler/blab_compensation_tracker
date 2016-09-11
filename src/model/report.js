@@ -1,5 +1,8 @@
-function Report(id, submitterId) {
+function Report(id, submitterId, input, output, date) {
   this.id = id;
+  this.input = input;
+  this.output = output;
+  this.date = date;
   this.submitterId = submitterId;
   this.valid = false;
   this.verifiers = [];

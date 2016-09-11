@@ -33,8 +33,8 @@ app.post('/members', function(req, res) {
 app.post('/reports', function(req, res) {
   var data = req.body.data;
   try {
-    var r = new UserReport(data.attributes.input, data.attributes.output, data.attributes.date, data.attributes['submitter-id']);
-    res.send(toJSONAPI.report(reports.add(new Report(r.hash(), r._memberId))));
+    var r = new UserReport(data.attributes.input, data.attributes.output, data.attributes['created-on'], data.attributes['submitter-id']);
+    res.send(toJSONAPI.report(reports.add(new Report(r.hash(), r._memberId, r._input, r._output, r._date))));
   } catch(err) {
     req.body.errors = [
       {
