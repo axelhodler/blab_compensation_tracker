@@ -25,13 +25,5 @@ module.exports = {
     expect(function() {
       reports.add(report2)
     }).to.throw(Error, 'Adding would have created a duplicate report id');
-  },
-  addingReportUsingDateInTheFutureThrows : function() {
-    var inOneHour = new Date().getTime() + 3600000;
-    var date = new Date(inOneHour);
-
-    expect(function() {
-      new UserChosenReportContents(1, 'something', inOneHour);
-    }).to.throw(Error, 'in the future');
   }
 };
