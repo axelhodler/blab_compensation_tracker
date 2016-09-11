@@ -40,10 +40,14 @@ app.post('/reports', function(req, res) {
       {
         'status': 422,
         'title': 'Invalid Attribute',
+        'source': {
+          'pointer': 'data/attributes/input'
+        },
         'detail': err.message
       }
     ];
-    res.send(req.body);
+    res.status(422)
+      .send(req.body);
   }
 });
 
