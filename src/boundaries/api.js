@@ -8,17 +8,34 @@ var ReportVerification = require('../actions/report_verification');
 var toJSONAPI = require('./to_jsonapi');
 
 var express = require('express');
+var jwt = require('express-jwt');
+var tokenSecret = require('../security/tokensecret');
+var tokenProvider = require('../security/token_provider');
+
 var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json({
   type: 'application/vnd.api+json'
 }));
 
+var useTokenInAuthorizationHeader = function fromHeader (req) {
+  var authorizationHeader = req.get('Authorization').substring(7);
+  return authorizationHeader ? authorizationHeader : null;
+};
+
+var AUTHORIZATION_PATH = '/auth';
+app.use(jwt(
+  {
+    secret: tokenSecret.get(),
+    getToken: useTokenInAuthorizationHeader
+  }
+).unless({path: [AUTHORIZATION_PATH]}));
+
 var reports = new Reports();
 var verification = new ReportVerification(members, reports);
 
-app.get('/', function (req, res) {
-  res.send('WIRED UP');
+app.post(AUTHORIZATION_PATH, function(req, res) {
+  res.send({token : tokenProvider.sign({identification: req.body.identification})});
 });
 
 app.get('/members', function(req, res) {
