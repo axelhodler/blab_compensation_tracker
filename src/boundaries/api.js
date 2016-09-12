@@ -70,7 +70,7 @@ app.post('/reports', function(req, res) {
 });
 
 app.get('/verifications/:member_id', function(req, res) {
-  var member = {id: req.params.member_id}
+  var member = {id: req.params.member_id};
   res.send(toJSONAPI.member(member));
 });
 
