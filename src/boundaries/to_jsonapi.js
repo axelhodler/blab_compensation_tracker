@@ -38,12 +38,16 @@ function transformMember(member) {
   return member;
 }
 
-function transformMemberIdToMember(memberId) {
+function transformMemberIdToMember(aMember) {
   var member = {};
 
-  member.id = memberId;
+  member.id = aMember.id;
   member.type = "members";
-  member.attributes = {};
+  member.attributes = {
+    'full-name' : aMember.fullName,
+    'ether-address' : aMember.etherAddress,
+    mail: aMember.mail
+  };
   return member;
 }
 

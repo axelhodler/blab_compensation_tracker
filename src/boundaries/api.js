@@ -1,4 +1,4 @@
-var members = require('../model/members');
+var members = require('../stubs/fake_members');
 var Reports = require('../model/reports');
 var UserReport = require('../model/user_report');
 var UserChosenReportContents = require('../model/user_chosen_report_contents');
@@ -40,12 +40,6 @@ app.post(AUTHORIZATION_PATH, function(req, res) {
 
 app.get('/members', function(req, res) {
   res.send(toJSONAPI.members(members.members));
-});
-
-app.post('/members', function(req, res) {
-  var data = req.body.data;
-  members.add(data.id);
-  res.send(toJSONAPI.member(req.body.data));
 });
 
 app.post('/reports', function(req, res) {
