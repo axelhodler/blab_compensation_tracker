@@ -1,5 +1,6 @@
 var ReportVerification = require('../../src/actions/report_verification');
 var Report = require('../../src/model/report');
+var Member = require('../../src/model/member');
 
 module.exports = function() {
   var reportVerification,
@@ -21,7 +22,7 @@ module.exports = function() {
 
   this.Given(/^following members exist:$/, function (table) {
     table.rows().forEach(function(memberId) {
-      members.add(memberId);
+      members.add(new Member(memberId));
     });
   });
 
