@@ -35,7 +35,12 @@ var reports = new Reports();
 var verification = new ReportVerification(members, reports);
 
 app.post(AUTHORIZATION_PATH, function(req, res) {
-  res.send({token : tokenProvider.sign({identification: req.body.identification})});
+  var mail = req.body.username;
+  if (members.memberByMail(mail).passwordMatches(req.body.password)) {
+    res.send({token : tokenProvider.sign({identification: mail})});
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 app.get('/members', function(req, res) {

@@ -12,6 +12,11 @@ module.exports = {
     new Member(6, 'mail6@test.com', 'pw6', '0xad4dc7629e4d9e864a73c395421fcab4eae46857', faker.name.findName()),
     new Member(7, 'mail7@test.com', 'pw7', '0x032fe96ce220d7f9a20dba6a328c1f04fa070cbc', faker.name.findName()),
     new Member(8, 'mail8@test.com', 'pw8', '0x6d9c6375efd54b03e664fc27d0992a7d1d685c82', faker.name.findName()),
-    new Member(9, 'mail9@test.com', 'pw9', '0xb51864ab6fc08b3e36de22ce5088d8ecc59d9aad', faker.name.findName()),
-  ]
+    new Member(9, 'mail9@test.com', 'pw9', '0xb51864ab6fc08b3e36de22ce5088d8ecc59d9aad', faker.name.findName())
+  ],
+  memberByMail: function(mail) {
+    return this.members.filter(function(member) {
+      return member.mail === mail;
+    })[0];
+  }
 };
