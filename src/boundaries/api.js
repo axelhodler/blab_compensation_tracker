@@ -18,8 +18,12 @@ app.use(bodyParser.json({
   type: 'application/vnd.api+json'
 }));
 
+var extractToken = function(request) {
+  return request.get('Authorization').substring(7);
+};
+
 var useTokenInAuthorizationHeader = function fromHeader (req) {
-  var authorizationHeader = req.get('Authorization').substring(7);
+  var authorizationHeader = extractToken(req);
   return authorizationHeader ? authorizationHeader : null;
 };
 
@@ -48,7 +52,7 @@ app.get('/members', function(req, res) {
 });
 
 app.post('/reports', function(req, res) {
-  var id = members.memberByMail(tokenProvider.verifiedContent(req.get('Authorization').substring(7)).identification).id;
+  var id = members.memberByMail(tokenProvider.verifiedContent(extractToken(req)).identification).id;
   var data = req.body.data;
   try {
     var r = new UserReport(new UserChosenReportContents(data.attributes.input, data.attributes.output, data.attributes['created-on']), id);
