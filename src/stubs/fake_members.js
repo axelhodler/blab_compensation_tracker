@@ -18,5 +18,8 @@ module.exports = {
     return this.members.filter(function(member) {
       return member.mail === mail;
     })[0];
+  },
+  requiredMajority: function() {
+    return Math.ceil(this.members.length * 0.51);
   }
 };
