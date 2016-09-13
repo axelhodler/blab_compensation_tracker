@@ -48,9 +48,10 @@ app.get('/members', function(req, res) {
 });
 
 app.post('/reports', function(req, res) {
+  var id = members.memberByMail(tokenProvider.verifiedContent(req.get('Authorization').substring(7)).identification).id;
   var data = req.body.data;
   try {
-    var r = new UserReport(new UserChosenReportContents(data.attributes.input, data.attributes.output, data.attributes['created-on']), data.attributes['submitter-id']);
+    var r = new UserReport(new UserChosenReportContents(data.attributes.input, data.attributes.output, data.attributes['created-on']), id);
     res.send(toJSONAPI.report(reports.add(new Report(r.hash(), r._memberId, r._input, r._output, r._date))));
   } catch(err) {
     req.body.errors = [
