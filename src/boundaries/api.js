@@ -27,6 +27,10 @@ var useTokenInAuthorizationHeader = function fromHeader (req) {
   return authorizationHeader ? authorizationHeader : null;
 };
 
+var extractMemberIdFromAccessingUser = function(req) {
+  return members.memberByMail(tokenProvider.verifiedContent(extractToken(req)).identification).id;
+};
+
 var AUTHORIZATION_PATH = '/auth';
 app.use(jwt(
   {
@@ -52,7 +56,7 @@ app.get('/members', function(req, res) {
 });
 
 app.post('/reports', function(req, res) {
-  var id = members.memberByMail(tokenProvider.verifiedContent(extractToken(req)).identification).id;
+  var id = extractMemberIdFromAccessingUser(req);
   var data = req.body.data;
   try {
     var r = new UserReport(new UserChosenReportContents(data.attributes.input, data.attributes.output, data.attributes['created-on']), id);
@@ -80,7 +84,7 @@ app.get('/verifications/:member_id', function(req, res) {
 
 app.post('/verifications', function(req, res) {
   var data = req.body.data;
-  var memberId = data.relationships.member.data.id;
+  var memberId = extractMemberIdFromAccessingUser(req);
   var reportId = data.relationships.report.data.id;
   verification.verify(memberId, reportId);
   res.send(req.body);
