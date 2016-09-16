@@ -59,8 +59,10 @@ app.post('/reports', function(req, res) {
   var id = extractMemberIdFromAccessingUser(req);
   var data = req.body.data;
   try {
-    var r = new UserReport(new UserChosenReportContents(data.attributes.input, data.attributes.output, data.attributes['created-on']), id);
-    res.send(toJSONAPI.report(reports.add(new Report(r.hash(), r._memberId, r._input, r._output, r._date))));
+    var r = new UserChosenReportContents(data.attributes.input, data.attributes.output, data.attributes['created-on']);
+    var userReport = new UserReport(r, id);
+    var report = reports.add(new Report(userReport.hash(), id, r));
+    res.send(toJSONAPI.report(report));
   } catch(err) {
     req.body.errors = [
       {
