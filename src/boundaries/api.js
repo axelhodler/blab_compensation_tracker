@@ -89,6 +89,12 @@ app.post('/verifications', function(req, res) {
   var memberId = extractMemberIdFromAccessingUser(req);
   var reportId = data.relationships.report.data.id;
   verification.verify(memberId, reportId);
+  req.body.data.relationships.member = {
+    data: {
+      type: 'members',
+      id: memberId
+    }
+  };
   res.send(req.body);
 });
 
