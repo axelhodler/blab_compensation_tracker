@@ -28,7 +28,7 @@ var useTokenInAuthorizationHeader = function fromHeader (req) {
 };
 
 var extractMemberIdFromAccessingUser = function(req) {
-  return members.memberByMail(tokenProvider.verifiedContent(extractToken(req)).identification).id;
+  return members.memberByMail(tokenProvider.verifiedContent(useTokenInAuthorizationHeader(req)).identification).id;
 };
 
 var AUTHORIZATION_PATH = '/auth';
