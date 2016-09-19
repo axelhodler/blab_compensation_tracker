@@ -51,7 +51,7 @@ var verification = new ReportVerification(members, reports);
 app.post(AUTHORIZATION_PATH, function(req, res) {
   var mail = req.body.username;
   var member = members.memberByMail(mail);
-  if (member.passwordMatches(req.body.password)) {
+  if (member && member.passwordMatches(req.body.password)) {
     res.send({
       token: tokenProvider.sign(
         {
