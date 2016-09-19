@@ -18,13 +18,13 @@ app.use(bodyParser.json({
   type: 'application/vnd.api+json'
 }));
 
-var extractToken = function(request) {
-  return request.get('Authorization').substring(7);
-};
-
 var useTokenInAuthorizationHeader = function fromHeader (req) {
-  var authorizationHeader = extractToken(req);
-  return authorizationHeader ? authorizationHeader : null;
+  var authorizationHeader = req.get('Authorization');
+  if (authorizationHeader) {
+    return authorizationHeader.substring(7);
+  } else {
+    return null;
+  }
 };
 
 var extractMemberIdFromAccessingUser = function(req) {
@@ -38,6 +38,12 @@ app.use(jwt(
     getToken: useTokenInAuthorizationHeader
   }
 ).unless({path: [AUTHORIZATION_PATH]}));
+
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).send('invalid token...');
+  }
+});
 
 var reports = new Reports();
 var verification = new ReportVerification(members, reports);
