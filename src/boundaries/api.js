@@ -10,8 +10,11 @@ var toJSONAPI = require('./to_jsonapi');
 var express = require('express');
 var jwt = require('express-jwt');
 var tokenSecret = require('../security/tokensecret');
-var signToken = require('../security/sign_token');
 var readToken = require('../security/read_token');
+
+var RequestWrapper = require('./wrapper/request_wrapper');
+var ResponseWrapper = require('./wrapper/response_wrapper');
+var authenticateUser = require('../security/authenticate_user');
 
 var bodyParser = require('body-parser');
 var app = express();
@@ -41,20 +44,7 @@ var reports = new Reports();
 var verification = new ReportVerification(members, reports);
 
 app.post(AUTHORIZATION_PATH, function(req, res) {
-  var mail = req.body.username;
-  var member = members.memberByMail(mail);
-  if (member && member.passwordMatches(req.body.password)) {
-    res.send({
-      token: signToken.sign(
-        {
-          identification: mail,
-          id: member.id
-        }
-      )
-    });
-  } else {
-    res.sendStatus(401);
-  }
+  authenticateUser.authenticate(new RequestWrapper(req), new ResponseWrapper(res));
 });
 
 app.get('/members', function(req, res) {
