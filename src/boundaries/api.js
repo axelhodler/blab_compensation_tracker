@@ -23,6 +23,10 @@ var extractMemberIdFromAccessingUser = function(req) {
 var reports = new Reports();
 var verification = new ReportVerification(members, reports);
 
+app.use(bodyParser.json({
+  type: 'application/vnd.api+json'
+}));
+
 app = authApi.setup(app);
 app.get('/members', function(req, res) {
   res.send(toJSONAPI.members(members.members));

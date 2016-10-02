@@ -1,5 +1,4 @@
 var jwt = require('express-jwt');
-var bodyParser = require('body-parser');
 
 var RequestWrapper = require('./wrapper/request_wrapper');
 var ResponseWrapper = require('./wrapper/response_wrapper');
@@ -11,10 +10,6 @@ var AUTHORIZATION_PATH = '/auth';
 
 module.exports = {
   setup: function(app) {
-
-    app.use(bodyParser.json({
-      type: 'application/vnd.api+json'
-    }));
 
     app.use(jwt(
       {
