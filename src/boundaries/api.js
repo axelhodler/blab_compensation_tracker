@@ -10,7 +10,7 @@ var toJSONAPI = require('./to_jsonapi');
 var express = require('express');
 var jwt = require('express-jwt');
 var tokenSecret = require('../security/tokensecret');
-var tokenProvider = require('../security/token_provider');
+var signToken = require('../security/sign_token');
 var readToken = require('../security/read_token');
 
 var bodyParser = require('body-parser');
@@ -54,7 +54,7 @@ app.post(AUTHORIZATION_PATH, function(req, res) {
   var member = members.memberByMail(mail);
   if (member && member.passwordMatches(req.body.password)) {
     res.send({
-      token: tokenProvider.sign(
+      token: signToken.sign(
         {
           identification: mail,
           id: member.id
