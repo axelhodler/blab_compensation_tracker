@@ -19,24 +19,15 @@ app.use(bodyParser.json({
   type: 'application/vnd.api+json'
 }));
 
-var useTokenInAuthorizationHeader = function fromHeader (req) {
-  var authorizationHeader = req.get('Authorization');
-  if (authorizationHeader) {
-    return authorizationHeader.substring(7);
-  } else {
-    return null;
-  }
-};
-
 var extractMemberIdFromAccessingUser = function(req) {
-  return members.memberByMail(readToken.identificationFrom(useTokenInAuthorizationHeader(req))).id;
+  return members.memberByMail(readToken.identificationFrom(readToken.fromAuthorizationHeader(req))).id;
 };
 
 var AUTHORIZATION_PATH = '/auth';
 app.use(jwt(
   {
     secret: tokenSecret.get(),
-    getToken: useTokenInAuthorizationHeader
+    getToken: readToken.fromAuthorizationHeader
   }
 ).unless({path: [AUTHORIZATION_PATH]}));
 

@@ -8,5 +8,13 @@ function verifiedContent(token) {
 module.exports = {
   identificationFrom: function(tokenValue) {
     return verifiedContent(tokenValue).identification;
+  },
+  fromAuthorizationHeader: function(request) {
+    var authorizationHeader = request.get('Authorization');
+    if (authorizationHeader) {
+      return authorizationHeader.substring(7);
+    } else {
+      return null;
+    }
   }
 };
