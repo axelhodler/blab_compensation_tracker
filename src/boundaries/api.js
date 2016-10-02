@@ -4,6 +4,7 @@ var UserReport = require('../model/user_report');
 var UserChosenReportContents = require('../model/user_chosen_report_contents');
 var Report = require('../model/report');
 var ReportVerification = require('../actions/report_verification');
+var InvalidAttribute = require('./errors/invalid_attribute');
 
 var toJSONAPI = require('./to_jsonapi');
 
@@ -36,16 +37,7 @@ app.post('/reports', function(req, res) {
     var report = reports.add(new Report(userReport.hash(), id, r));
     res.send(toJSONAPI.report(report));
   } catch(err) {
-    req.body.errors = [
-      {
-        'status': 422,
-        'title': 'Invalid Attribute',
-        'source': {
-          'pointer': 'data/attributes/input'
-        },
-        'detail': err.message
-      }
-    ];
+    req.body.errors = new InvalidAttribute('input', err.message).value();
     res.status(422)
       .send(req.body);
   }
