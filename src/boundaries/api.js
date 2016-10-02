@@ -8,45 +8,21 @@ var ReportVerification = require('../actions/report_verification');
 var toJSONAPI = require('./to_jsonapi');
 
 var express = require('express');
-var jwt = require('express-jwt');
-var tokenSecret = require('../security/tokensecret');
-var readToken = require('../security/read_token');
 
-var RequestWrapper = require('./wrapper/request_wrapper');
-var ResponseWrapper = require('./wrapper/response_wrapper');
-var authenticateUser = require('../security/authenticate_user');
+var readToken = require('../security/read_token');
+var authApi = require('./auth_api');
 
 var bodyParser = require('body-parser');
 var app = express();
-app.use(bodyParser.json({
-  type: 'application/vnd.api+json'
-}));
 
 var extractMemberIdFromAccessingUser = function(req) {
   return members.memberByMail(readToken.identificationFrom(readToken.fromAuthorizationHeader(req))).id;
 };
 
-var AUTHORIZATION_PATH = '/auth';
-app.use(jwt(
-  {
-    secret: tokenSecret.get(),
-    getToken: readToken.fromAuthorizationHeader
-  }
-).unless({path: [AUTHORIZATION_PATH]}));
-
-app.use(function (err, req, res, next) {
-  if (err.name === 'UnauthorizedError') {
-    res.status(401).send('invalid token...');
-  }
-});
-
 var reports = new Reports();
 var verification = new ReportVerification(members, reports);
 
-app.post(AUTHORIZATION_PATH, function(req, res) {
-  authenticateUser.authenticate(new RequestWrapper(req), new ResponseWrapper(res));
-});
-
+app = authApi.setup(app);
 app.get('/members', function(req, res) {
   res.send(toJSONAPI.members(members.members));
 });
