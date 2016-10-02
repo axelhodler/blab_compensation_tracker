@@ -11,6 +11,7 @@ var express = require('express');
 var jwt = require('express-jwt');
 var tokenSecret = require('../security/tokensecret');
 var tokenProvider = require('../security/token_provider');
+var readToken = require('../security/read_token');
 
 var bodyParser = require('body-parser');
 var app = express();
@@ -28,7 +29,7 @@ var useTokenInAuthorizationHeader = function fromHeader (req) {
 };
 
 var extractMemberIdFromAccessingUser = function(req) {
-  return members.memberByMail(tokenProvider.verifiedContent(useTokenInAuthorizationHeader(req)).identification).id;
+  return members.memberByMail(readToken.identificationFrom(useTokenInAuthorizationHeader(req))).id;
 };
 
 var AUTHORIZATION_PATH = '/auth';
