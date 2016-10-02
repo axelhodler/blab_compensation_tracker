@@ -120,10 +120,6 @@ app.get('/reports', function(req, res) {
   res.send(toJSONAPI.reports(reports.all()));
 });
 
-app.get('/verified', function(req, res) {
-  res.send(reports.verified());
-});
-
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
