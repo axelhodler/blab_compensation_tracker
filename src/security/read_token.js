@@ -16,5 +16,8 @@ module.exports = {
     } else {
       return null;
     }
+  },
+  idFrom: function(tokenValue) {
+    return verifiedContent(tokenValue).id;
   }
 };

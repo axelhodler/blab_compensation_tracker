@@ -17,7 +17,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var extractMemberIdFromAccessingUser = function(req) {
-  return members.memberByMail(readToken.identificationFrom(readToken.fromAuthorizationHeader(req))).id;
+  return readToken.idFrom(readToken.fromAuthorizationHeader(req));
 };
 
 var reports = new Reports();
