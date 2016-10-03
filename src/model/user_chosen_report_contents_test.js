@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var UserChosenReportContents = require('./user_chosen_report_contents');
 
 module.exports = {

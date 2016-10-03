@@ -19,6 +19,6 @@
     "start": "node src/boundaries/api.js",
     "test": "./node_modules/.bin/cucumber.js --tags ~@ignore features",
     "test1": "./node_modules/.bin/cucumber.js --tags @only features",
-    "unit": "./node_modules/teenytest/bin/teenytest 'src/**/*_test.js'"
+    "unit": "./node_modules/teenytest/bin/teenytest --helper src/testsupport/helper.js 'src/**/*_test.js'"
   }
 }

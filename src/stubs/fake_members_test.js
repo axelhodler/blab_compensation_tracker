@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var members = require('./fake_members');
 
 module.exports = {

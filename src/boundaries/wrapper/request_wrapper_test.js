@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var RequestWrapper = require('./request_wrapper');
 
 module.exports = {

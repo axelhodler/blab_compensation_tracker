@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var readToken = require('./read_token');
 
 module.exports = {
