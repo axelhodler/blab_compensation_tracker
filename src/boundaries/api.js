@@ -72,7 +72,7 @@ app.get('/reports/:report_id', function(req, res) {
 });
 
 app.get('/reports', function(req, res) {
-  if (req.query.filter && req.query.filter.published === 'false') {
+  if (req.query.filter.published === 'false') {
     var memberId = extractMemberIdFromAccessingUser(req);
     res.send(toJSONAPI.reports(reports.unpublishedFor(memberId)))
   } else {
