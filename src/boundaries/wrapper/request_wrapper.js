@@ -8,7 +8,7 @@ function RequestWrapper(req) {
   };
 
   this.authorizationToken = function() {
-    return 'someToken';
+    return req.get('Authorization').substring(7);
   }
 }
 

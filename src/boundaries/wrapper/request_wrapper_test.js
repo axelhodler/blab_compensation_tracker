@@ -35,5 +35,13 @@ module.exports = {
     var wrapper = new RequestWrapper(req);
 
     expect(wrapper.authorizationToken()).to.equal('someToken');
+  },
+
+  can_extract_token_triangulate: function() {
+    var req = new RequestWithAuthorizationHeader('Bearer token');
+
+    var wrapper = new RequestWrapper(req);
+
+    expect(wrapper.authorizationToken()).to.equal('token');
   }
 };
