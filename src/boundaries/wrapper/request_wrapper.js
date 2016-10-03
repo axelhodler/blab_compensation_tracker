@@ -5,6 +5,10 @@ function RequestWrapper(req) {
 
   this.hasAuthorizationHeader = function() {
     return !!req.get('Authorization');
+  };
+
+  this.authorizationToken = function() {
+    return 'someToken';
   }
 }
 

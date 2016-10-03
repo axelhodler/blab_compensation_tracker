@@ -27,5 +27,13 @@ module.exports = {
     var wrapper = new RequestWrapper(req);
 
     expect(wrapper.hasAuthorizationHeader()).to.be.false;
+  },
+
+  can_extract_token: function() {
+    var req = new RequestWithAuthorizationHeader();
+
+    var wrapper = new RequestWrapper(req);
+
+    expect(wrapper.authorizationToken()).to.equal('someToken');
   }
 };
