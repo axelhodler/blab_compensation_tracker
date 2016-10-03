@@ -19,5 +19,8 @@ module.exports = {
   },
   idFrom: function(tokenValue) {
     return verifiedContent(tokenValue).id;
+  },
+  idFromRequest: function(requestWrapper) {
+    return verifiedContent(requestWrapper.authorizationToken()).id;
   }
 };
