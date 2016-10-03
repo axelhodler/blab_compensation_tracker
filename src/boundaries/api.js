@@ -5,6 +5,7 @@ var UserChosenReportContents = require('../model/user_chosen_report_contents');
 var Report = require('../model/report');
 var ReportVerification = require('../actions/report_verification');
 var InvalidAttribute = require('./errors/invalid_attribute');
+var RequestWrapper = require('./wrapper/request_wrapper');
 
 var toJSONAPI = require('./to_jsonapi');
 
@@ -17,7 +18,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var extractMemberIdFromAccessingUser = function(req) {
-  return readToken.idFrom(readToken.fromAuthorizationHeader(req));
+  return readToken.idFromRequest(new RequestWrapper(req));
 };
 
 var reports = new Reports();
