@@ -9,7 +9,11 @@ function RequestWrapper(req) {
 
   this.authorizationToken = function() {
     return req.get('Authorization').substring(7);
-  }
+  };
+
+  this.provideError = function(error) {
+    req.body.errors = error;
+  };
 }
 
 module.exports = RequestWrapper;

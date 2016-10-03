@@ -6,6 +6,10 @@ function ResponseWrapper(res) {
   this.send = function(content) {
     res.send(content);
   };
+
+  this.sendUnprocessableEntity = function(body) {
+    res.status(422).send(body);
+  }
 }
 
 module.exports = ResponseWrapper;
