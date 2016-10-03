@@ -72,7 +72,7 @@ app.get('/reports/:report_id', function(req, res) {
 });
 
 app.get('/reports', function(req, res) {
-  res.send(toJSONAPI.reports(reports.all()));
+  res.send(toJSONAPI.reports(reports.allPublished()));
 });
 
 app.listen(3000, function () {

@@ -8,18 +8,18 @@ function Reports() {
   };
 
   this.unverified = function() {
-    return this.all().filter(function(report) {
+    return this.allPublished().filter(function(report) {
       return !report.isValid();
     });
   };
 
   this.verified = function() {
-    return this.all().filter(function(report) {
+    return this.allPublished().filter(function(report) {
       return report.isValid();
     });
   };
 
-  this.all = function() {
+  this.allPublished = function() {
     return Object.keys(this._reports).map(function(key) {
       return this._reports[key];
     }.bind(this)).filter(function(report) {
