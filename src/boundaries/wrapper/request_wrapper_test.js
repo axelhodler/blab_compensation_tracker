@@ -1,16 +1,16 @@
 var RequestWrapper = require('./request_wrapper');
 
-function RequestWithAuthorizationHeader() {
+function RequestWithAuthorizationHeader(value) {
   this.get = function(header) {
     if (header === 'Authorization') {
-      return 'Bearer someToken';
+      return value;
     }
   }
 }
 
 module.exports = {
   knowsIfAuthorizationHeaderPresent: function() {
-    var req = new RequestWithAuthorizationHeader();
+    var req = new RequestWithAuthorizationHeader('Bearer someToken');
 
     var wrapper = new RequestWrapper(req);
 
@@ -30,7 +30,7 @@ module.exports = {
   },
 
   can_extract_token: function() {
-    var req = new RequestWithAuthorizationHeader();
+    var req = new RequestWithAuthorizationHeader('Bearer someToken');
 
     var wrapper = new RequestWrapper(req);
 
