@@ -33,8 +33,8 @@ function Reports() {
 
   this.unpublishedFor = function(memberId) {
     return this.all().filter(function(report) {
-      return report.submitterId === memberId;
-    })
+      return report.submitterId === memberId && !report.published;
+    });
   };
 
   this.fetch = function(reportId) {
