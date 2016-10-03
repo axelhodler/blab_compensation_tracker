@@ -21,6 +21,10 @@ module.exports = function() {
     reports.add(report);
   });
 
+  this.When(/^fetching a list of unpublished reports of member (\d+)$/, function (memberId) {
+    listOfReports = reports.unpublishedFor(memberId);
+  });
+
   this.When(/^fetching a list of unverified reports$/, function() {
     listOfReports = reports.unverified();
   });

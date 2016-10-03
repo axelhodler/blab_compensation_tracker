@@ -27,6 +27,14 @@ function Reports() {
     });
   };
 
+  this.unpublishedFor = function(memberId) {
+    return Object.keys(this._reports).map(function(key) {
+      return this._reports[key];
+    }.bind(this)).filter(function(report) {
+      return report.submitterId === memberId;
+    })
+  };
+
   this.fetch = function(reportId) {
     return this._reports[reportId];
   };
