@@ -20,3 +20,9 @@ Feature: List unverified reports
     When fetching a list of unverified reports
     Then the list contains the report "07123e" by member 1 on position 0
     Then the list contains the report "01234f" by member 2 on position 1
+
+  Scenario: Published and unpublished reports
+    Given an unverified report "07123e" by member 1
+    Given an unpublished report "01337g" by member 2
+    When fetching a list of unverified reports
+    Then the list consists of the report "07123e" by member 1

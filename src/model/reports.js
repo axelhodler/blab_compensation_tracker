@@ -10,6 +10,8 @@ function Reports() {
   this.unverified = function() {
     return this.all().filter(function(report) {
       return !report.isValid();
+    }).filter(function(report) {
+      return report.published;
     });
   };
 

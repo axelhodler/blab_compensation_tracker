@@ -10,7 +10,11 @@ module.exports = function() {
     reports.add(r);
   });
 
-  this.Given(/^a verified report "([^"]*)" by member (\d+)$/, function (reportId, memberId) {
+  this.Given(/^an unpublished report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
+    reports.add(new Report(reportId, memberId, userChosenReportContents));
+  });
+
+  this.Given(/^a verified report "([^"]*)" by member (\d+)$/, function(reportId, memberId) {
     var report = new Report(reportId, memberId, userChosenReportContents);
     report.publish();
     report.makeValid();

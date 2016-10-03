@@ -6,7 +6,9 @@ module.exports = function() {
 
   this.Given(/^an input of (\d+) hours which achieved output of "([^"]*)" on date "([^"]*)" by member (\d+)$/, function (hoursSpent, outputDescription, date, memberId) {
     var r = new UserReport(new UserChosenReportContents(hoursSpent, outputDescription, date), memberId);
-    reports.add(new Report(r.hash(), r._memberId, userChosenReportContents));
+    var report = new Report(r.hash(), r._memberId, userChosenReportContents);
+    report.publish();
+    reports.add(report);
   });
 
 };
