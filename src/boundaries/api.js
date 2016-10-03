@@ -34,12 +34,12 @@ app.get('/members', function(req, res) {
 });
 
 app.post('/reports', function(req, res) {
-  var id = extractMemberIdFromAccessingUser(req);
+  var memberId = extractMemberIdFromAccessingUser(req);
   var data = req.body.data;
   try {
-    var r = new UserChosenReportContents(data.attributes.input, data.attributes.output, data.attributes['created-on']);
-    var userReport = new UserReport(r, id);
-    var report = reports.add(new Report(userReport.hash(), id, r));
+    var userChosenReportContents = new UserChosenReportContents(data.attributes.input, data.attributes.output, data.attributes['created-on']);
+    var userReport = new UserReport(userChosenReportContents, memberId);
+    var report = reports.add(new Report(userReport.hash(), memberId, userChosenReportContents));
     res.send(toJSONAPI.report(report));
   } catch(err) {
     req.body.errors = new InvalidAttribute('input', err.message).value();
