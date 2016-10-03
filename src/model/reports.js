@@ -19,18 +19,20 @@ function Reports() {
     });
   };
 
-  this.allPublished = function() {
+  this.all = function() {
     return Object.keys(this._reports).map(function(key) {
       return this._reports[key];
-    }.bind(this)).filter(function(report) {
+    }.bind(this));
+  };
+
+  this.allPublished = function() {
+    return this.all().filter(function(report) {
       return report.published;
     });
   };
 
   this.unpublishedFor = function(memberId) {
-    return Object.keys(this._reports).map(function(key) {
-      return this._reports[key];
-    }.bind(this)).filter(function(report) {
+    return this.all().filter(function(report) {
       return report.submitterId === memberId;
     })
   };
