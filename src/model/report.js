@@ -5,6 +5,7 @@ function Report(id, submitterId, userChosenReportContents) {
   this.date = userChosenReportContents.date;
   this.submitterId = submitterId;
   this.valid = false;
+  this.published = false;
   this.verifiers = [];
 
   this.verifyBy = function(verifierId) {
@@ -29,6 +30,10 @@ function Report(id, submitterId, userChosenReportContents) {
 
   this.isValid = function() {
     return this.valid;
+  };
+
+  this.publish = function() {
+    this.published = true;
   };
 
   function notTryingToSelfValidate(verifierId) {
