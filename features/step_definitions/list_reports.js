@@ -25,6 +25,10 @@ module.exports = function() {
     listOfReports = reports.unverified();
   });
 
+  this.When(/^fetching a list of all published reports$/, function () {
+    listOfReports = reports.all();
+  });
+
   this.When(/^fetch unverified report "([^"]*)"$/, function(reportId) {
     report = reports.fetch(reportId);
   });

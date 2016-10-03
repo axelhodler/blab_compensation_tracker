@@ -10,8 +10,6 @@ function Reports() {
   this.unverified = function() {
     return this.all().filter(function(report) {
       return !report.isValid();
-    }).filter(function(report) {
-      return report.published;
     });
   };
 
@@ -24,7 +22,9 @@ function Reports() {
   this.all = function() {
     return Object.keys(this._reports).map(function(key) {
       return this._reports[key];
-    }.bind(this));
+    }.bind(this)).filter(function(report) {
+      return report.published;
+    });
   };
 
   this.fetch = function(reportId) {
