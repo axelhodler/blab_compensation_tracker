@@ -13,6 +13,7 @@ function transformReport(report) {
   attrs.output = report.output;
   attrs.valid = report.valid;
   attrs.verifiers = report.verifiers;
+  attrs.published = report.published;
   var relationshipData = report.verifiers.map(function(verifier) {
     return { type: "verifications", id: verifier}
   });
@@ -23,6 +24,7 @@ function transformReport(report) {
   delete report.date;
   delete report.input;
   delete report.output;
+  delete report.published;
 
   report.type = "reports";
   report.attributes = attrs;

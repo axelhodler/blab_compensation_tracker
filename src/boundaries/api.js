@@ -33,6 +33,12 @@ app.get('/members', function(req, res) {
   res.send(toJSONAPI.members(members.members));
 });
 
+app.patch('/reports/:report_id', function(req, res) {
+  var report = reports.fetch(req.params.report_id);
+  report.publish();
+  res.send(toJSONAPI.report(report));
+});
+
 app.post('/reports', function(req, res) {
   var memberId = extractMemberIdFromAccessingUser(req);
   var data = req.body.data;
